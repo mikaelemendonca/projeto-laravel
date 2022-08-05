@@ -1,4 +1,3 @@
-
 # ...
 jobs:
     phpstan-analysis:
@@ -7,8 +6,11 @@ jobs:
       steps:
           - uses: actions/checkout@v2
           - name: Setup PHP
-            run: # custom PHP installation 
+            uses: shivammathur/setup-php@v1
+            with:
+                php-version: 7.3
+                coverage: none # disable xdebug, pcov
+                tools: cs2pr
           - run: |
                 composer install # install your apps dependencies
-                composer require staabm/annotate-pull-request-from-checkstyle # install cs2pr
-                vendor/bin/phpstan analyse --error-format=checkstyle | vendor/bin/cs2pr
+                vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr
