@@ -52,4 +52,6 @@ $app->singleton(
 |
 */
 
+// Só para testar as anotações no no PR
+
 return $app;
