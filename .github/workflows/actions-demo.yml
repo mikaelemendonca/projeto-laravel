@@ -1,0 +1,14 @@
+
+# ...
+jobs:
+    phpstan-analysis:
+      name: phpstan static code analysis
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v2
+          - name: Setup PHP
+            run: # custom PHP installation 
+          - run: |
+                composer install # install your apps dependencies
+                composer require staabm/annotate-pull-request-from-checkstyle # install cs2pr
+                vendor/bin/phpstan analyse --error-format=checkstyle | vendor/bin/cs2pr
